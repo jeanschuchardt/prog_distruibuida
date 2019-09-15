@@ -22,7 +22,10 @@ class HelloClient {
 			System.out.println("iniciado");
 			int key = 1;
 			do {
-				System.out.println("digite uma opção");
+				System.out.println("------------------"
+						+ "\n");
+				menu();
+				System.out.println("digite uma opção\n-------------------\n");
 				key = sc.nextInt();
 				switch (key) {
 				case 1:
@@ -37,7 +40,18 @@ class HelloClient {
 
 				case 3:
 					//descreve conteuno no server
-					hello.registraRecurso(cliente.getMapFiles());
+					HashMap<String, String> mapFiles = new HashMap<String, String>();
+					try {
+						mapFiles = cliente.getMapFiles();
+						hello.registraRecurso(mapFiles);
+					}
+					catch (Exception e) {
+						System.out.println("recurso nao definidos");
+						System.out.println("utilize a pocao 2 para definir recursos");
+						System.out.println(e);
+						
+					}
+					
 					break;
 
 				case 4:
@@ -77,9 +91,12 @@ class HelloClient {
 	}
 	public static void  menu() {
 		System.out.println("0 - fim da aplicacao\n"
-				+ "1 - registra peer "
-				+ "2 - calcula hash"
-				+ "9 - test");
+				+ "1 - registra peer\n"
+				+ "2 - calcula hash\n"
+				+ "3 - registra recurso\n"
+				+ "4 - lista recurso\n"
+				
+				+ "9 - test\n");
 		
 	}
 
