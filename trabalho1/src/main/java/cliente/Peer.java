@@ -40,9 +40,9 @@ public class Peer {
 	}
 
 	public HashMap<String, String> contentList() throws NoSuchAlgorithmException, IOException {
-		
 
-		String path = "C:\\Users\\jean_burda\\Desktop\\Test";
+		// String path = "C:\\Users\\jean_burda\\Desktop\\Test";
+		String path = "C:\\Users\\jeans\\Desktop\\New folder";
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("informe uma pasta do sistema");
 //		path = sc.nextLine();
@@ -51,7 +51,7 @@ public class Peer {
 			f = new File(path);
 			File[] files = f.listFiles();
 
-			calculateHash( path, files);
+			calculateHash(path, files);
 
 		} catch (Exception e) {
 			System.out.println("Error contentList");
@@ -83,7 +83,7 @@ public class Peer {
 
 		return mapFiles;
 	}
-	
+
 	public HashMap<String, String> getMapFiles() {
 		return mapFiles;
 	}
@@ -124,7 +124,5 @@ public class Peer {
 		clientSocket.close();
 
 	}
-
-	
 
 }

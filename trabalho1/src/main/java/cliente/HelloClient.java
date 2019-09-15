@@ -20,7 +20,8 @@ class HelloClient {
 		Scanner sc = new Scanner(System.in);
 		try {
 			//ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.13:1099/Hello");
-			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
+			//ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
+			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.4:1099/Hello");
 			Peer cliente = new Peer();
 			System.out.println("iniciado");
 			int key = 1;
