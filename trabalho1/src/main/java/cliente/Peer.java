@@ -1,4 +1,4 @@
-package T1.T1;
+package cliente;
 
 import java.io.BufferedReader;
 import java.io.File;

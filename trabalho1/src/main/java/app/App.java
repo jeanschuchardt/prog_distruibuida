@@ -1,4 +1,4 @@
-package T1.T1;
+package app;
 
 /**
  * Hello world!
