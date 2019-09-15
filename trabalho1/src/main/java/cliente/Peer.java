@@ -1,4 +1,4 @@
-package T1.T1;
+package cliente;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,9 +43,9 @@ public class Peer {
 		
 
 		String path = "C:\\Users\\jean_burda\\Desktop\\Test";
-		Scanner sc = new Scanner(System.in);
-		System.out.println("informe uma pasta do sistema");
-		path = sc.nextLine();
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("informe uma pasta do sistema");
+//		path = sc.nextLine();
 		File f = null;
 		try {
 			f = new File(path);
