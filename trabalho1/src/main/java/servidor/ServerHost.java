@@ -1,5 +1,6 @@
 package servidor;
 
+import java.io.ObjectOutputStream.PutField;
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteServer;
 import java.rmi.server.ServerNotActiveException;
@@ -9,12 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import interfaces.ServerHostInterface;
+
 // Classe remota para o exemplo "Hello, world!"
 public class ServerHost extends UnicastRemoteObject implements ServerHostInterface {
+
 	private static final long serialVersionUID = 7896795898928782846L;
+
 	HashMap<String, HashMap<String, String>> recursos = new HashMap<String, HashMap<String, String>>();
-	ArrayList<String> clientes = new ArrayList<String>();
-	
+	HashMap<String, Clientes> clientes = new HashMap<String, Clientes>();
+
 	// Constroi um objeto remoto armazenando nele o String recebido
 	public ServerHost() throws RemoteException {
 		System.out.println("Servidor up");
@@ -27,30 +32,11 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 	}
 
 	public String registraPeer() throws Exception {
-		String distributeeHost = RemoteServer.getClientHost();
-		if(clientes.size()>0) {
-		
-			for (String ip : clientes) {
-				if (!distributeeHost.equals(ip)) {
-					clientes.add(distributeeHost);
-					System.out.println("registrando ip cliente");
-					return "Seu ip foi registrado "+distributeeHost;		
-				}
-				else {
-					
-					return "cliente ja registrado";
-				}
-			}
-		}else {
-			clientes.add(distributeeHost);
-			System.out.println("registrando ip cliente");
-			return "Seu ip foi registrado "+distributeeHost;
-			
-		}
-		return "erro";
-		
-				
-		
+		String ip = RemoteServer.getClientHost();
+		clientes.put(ip, new Clientes(ip));
+
+		return "ip registrado " + ip;
+
 	}
 
 	public Map associaRecuso() throws RemoteException {
@@ -76,7 +62,28 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 
 	public void registraRecurso(HashMap<String, String> mapFiles) throws RemoteException, ServerNotActiveException {
 		String distributeeHost = RemoteServer.getClientHost();
+		Clientes clientes2 = clientes.get(distributeeHost);
+		clientes2.setRecursos(mapFiles);
 		recursos.put(distributeeHost, mapFiles);
+
+	}
+
+	public HashMap<String, Clientes> solicitaClientes() throws RemoteException {
+		return clientes;
+	}
+
+	public String findByHash(String hash) throws RemoteException {
+		for (String key : clientes.keySet()) {
+			HashMap<String, String> recursos2 = clientes.get(key).getRecursos();
+			try {
+			String fileName = recursos2.get(hash);
+			return key +";" + fileName +";"+ hash;
+			}
+			catch (Exception e) {
+			
+			}
+		}
+		return "error";
 
 	}
 }

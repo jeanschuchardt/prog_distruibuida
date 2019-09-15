@@ -1,25 +1,20 @@
 package cliente;
 
 import java.rmi.Naming;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.DigestInputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import javax.xml.bind.DatatypeConverter;
 
-import servidor.ServerHostInterface;
+import interfaces.ServerHostInterface;
+import servidor.Clientes;
 
 class HelloClient {
 	// Programa cliente para o exemplo "Hello, world!"
 	public static void main(String[] argv) {
 		Scanner sc = new Scanner(System.in);
 		try {
-			//ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.13:1099/Hello");
+			// ServerHostInterface hello = (ServerHostInterface)
+			// Naming.lookup("//192.168.0.13:1099/Hello");
 			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
 			Peer cliente = new Peer();
 			System.out.println("iniciado");
@@ -56,15 +51,35 @@ class HelloClient {
 					break;
 
 				case 4:
-					 System.out.println(hello.listaRecursos());
+					System.out.println(hello.listaRecursos());
 					break;
 
 				case 5:
+					HashMap<String, Clientes> solicitaClientes = hello.solicitaClientes();
+					HashMap<String, String> value2 = new HashMap<String, String>();
+					for (String name : solicitaClientes.keySet()) {
+						String key1 = name.toString();
+						String value = solicitaClientes.get(name).getIp();
+						value2 = solicitaClientes.get(name).getRecursos();
+						System.out.println(key1 + ">" + value);
+					}
+					for (String name : value2.keySet()) {
+
+					}
+					break;
+				case 6:
+					System.out.println("info o hash do arquivo");
+					Scanner h = new Scanner(System.in);
+					String hash = h.nextLine();
+					String findByHash = hello.findByHash(hash);
+					System.out.println(findByHash);
+					
+					cliente.conectToPeer(findByHash);
+					cliente.clienteUDP();
 
 					break;
-
 				case 7:
-
+					
 					break;
 
 				case 8:
@@ -93,7 +108,7 @@ class HelloClient {
 
 	public static void menu() {
 		System.out.println("0 - fim da aplicacao\n" + "1 - registra peer\n" + "2 - calcula hash\n"
-				+ "3 - registra recurso\n" + "4 - lista recurso\n"
+				+ "3 - registra recurso\n" + "4 - lista recurso\n" + "5 - lista de clientes\n" + ""
 
 				+ "9 - test\n");
 
