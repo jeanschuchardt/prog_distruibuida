@@ -1,12 +1,16 @@
 package cliente;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.SocketException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,12 +21,16 @@ import java.util.Scanner;
 
 import javax.xml.bind.DatatypeConverter;
 
+import app.FileClient;
+import app.FileServer;
+
 public class Peer {
 	private HashMap<String, String> mapFiles = new HashMap<String, String>();
 
 	Peer() throws Exception {
 		// clienteUDP();
 		// serverUDP();
+		serverUDP() ;
 
 	}
 
@@ -41,8 +49,12 @@ public class Peer {
 
 	public HashMap<String, String> contentList() throws NoSuchAlgorithmException, IOException {
 
+
 		// String path = "C:\\Users\\jean_burda\\Desktop\\Test";
 		String path = "C:\\Users\\jeans\\Desktop\\New folder";
+
+//		String path = "../trabalho1/files";
+
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("informe uma pasta do sistema");
 //		path = sc.nextLine();
@@ -89,40 +101,23 @@ public class Peer {
 	}
 
 	public void clienteUDP() throws IOException {
-
-		DatagramSocket serverSocket = new DatagramSocket(9876);
-		byte[] receiveData = new byte[1024];
-		byte[] sendData = new byte[1024];
-		while (true) {
-			DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-			serverSocket.receive(receivePacket);
-			String sentence = new String(receivePacket.getData());
-			System.out.println("RECEIVED: " + sentence);
-			InetAddress IPAddress = receivePacket.getAddress();
-			int port = receivePacket.getPort();
-			String capitalizedSentence = sentence.toUpperCase();
-			sendData = capitalizedSentence.getBytes();
-			DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
-			serverSocket.send(sendPacket);
-		}
+		//String path = "../trabalho1/files";
+		String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
+		FileClient fc = new FileClient("localhost", 1988, path );
 	}
 
 	public void serverUDP() throws Exception {
-		BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-		DatagramSocket clientSocket = new DatagramSocket();
-		InetAddress IPAddress = InetAddress.getByName("localhost");
-		byte[] sendData = new byte[1024];
-		byte[] receiveData = new byte[1024];
-		String sentence = inFromUser.readLine();
-		sendData = sentence.getBytes();
-		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
-		clientSocket.send(sendPacket);
-		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-		clientSocket.receive(receivePacket);
-		String modifiedSentence = new String(receivePacket.getData());
-		System.out.println("FROM SERVER:" + modifiedSentence);
-		clientSocket.close();
+		FileServer fs = new FileServer(1988);
+		fs.start();
+		
 
 	}
 
+
+	public void conectToPeer(String findByHash) {
+	
+	}
+
+
+	
 }
