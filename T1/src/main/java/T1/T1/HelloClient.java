@@ -17,8 +17,8 @@ class HelloClient {
 	public static void main(String[] argv) {
 		Scanner sc = new Scanner(System.in);
 		try {
-			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
-			//Peer cliente =  new Peer();
+			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.13:1099/Hello");
+			Peer cliente =  new Peer();
 			System.out.println("iniciado");
 			int key = 1;
 			do {
@@ -31,16 +31,17 @@ class HelloClient {
 					break;
 
 				case 2:
-					System.out.println(hello.say());
+					// calcula hash dos arquivos de um diretorio
+					HashMap<String, String> contentList = cliente.contentList();
 					break;
 
 				case 3:
-					// calcula hash dos arquivos de um diretorio
-					//HashMap<String, String> contentList = cliente.contentList();
+					//descreve conteuno no server
+					hello.registraRecurso(cliente.getMapFiles());
 					break;
 
 				case 4:
-					System.out.println(hello.registraPeer());
+				//	System.out.println(hello.registraPeer());
 					break;
 
 				case 5:
@@ -56,7 +57,7 @@ class HelloClient {
 					break;
 
 				case 9:
-
+					System.out.println(hello.say());
 					break;
 
 				case 0:
@@ -73,6 +74,13 @@ class HelloClient {
 			System.out.println("HelloClient failed:");
 			e.printStackTrace();
 		}
+	}
+	public static void  menu() {
+		System.out.println("0 - fim da aplicacao\n"
+				+ "1 - registra peer "
+				+ "2 - calcula hash"
+				+ "9 - test");
+		
 	}
 
 	

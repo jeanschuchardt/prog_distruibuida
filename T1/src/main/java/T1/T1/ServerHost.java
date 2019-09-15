@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.RemoteServer;
 import java.rmi.server.ServerNotActiveException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 public class ServerHost extends UnicastRemoteObject implements ServerHostInterface {
 	private static final long serialVersionUID = 7896795898928782846L;
 	private String message;
+	HashMap<String, HashMap<String, String>> recursos = new HashMap<String, HashMap<String,String>>();
 	
 
 	// Constroi um objeto remoto armazenando nele o String recebido
@@ -68,5 +70,14 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public void registraRecurso(HashMap<String, String> mapFiles) throws RemoteException, ServerNotActiveException {
+		String distributeeHost = RemoteServer.getClientHost();
+		recursos.put(distributeeHost,mapFiles);
+		
+		
+		
+	}
 }
 
+;

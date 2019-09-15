@@ -18,10 +18,11 @@ import java.util.Scanner;
 import javax.xml.bind.DatatypeConverter;
 
 public class Peer {
+	private HashMap<String, String> mapFiles = new HashMap<String, String>();
 
 	Peer() throws Exception {
-		clienteUDP();
-		//serverUDP();
+		// clienteUDP();
+		// serverUDP();
 
 	}
 
@@ -39,7 +40,7 @@ public class Peer {
 	}
 
 	public HashMap<String, String> contentList() throws NoSuchAlgorithmException, IOException {
-		HashMap<String, String> mapFiles = new HashMap<String, String>();
+		
 
 		String path = "C:\\Users\\jean_burda\\Desktop\\Test";
 		Scanner sc = new Scanner(System.in);
@@ -50,7 +51,7 @@ public class Peer {
 			f = new File(path);
 			File[] files = f.listFiles();
 
-			calculateHash(mapFiles, path, files);
+			calculateHash( path, files);
 
 		} catch (Exception e) {
 			System.out.println("Error contentList");
@@ -61,7 +62,7 @@ public class Peer {
 		///
 	}
 
-	private HashMap<String, String> calculateHash(HashMap<String, String> mapFiles, String path, File[] files)
+	private HashMap<String, String> calculateHash(String path, File[] files)
 			throws NoSuchAlgorithmException, IOException {
 		for (int i = 0; i < files.length; i++) {
 			String fileName = files[i].getName();
@@ -80,6 +81,10 @@ public class Peer {
 
 		}
 
+		return mapFiles;
+	}
+	
+	public HashMap<String, String> getMapFiles() {
 		return mapFiles;
 	}
 
@@ -119,5 +124,7 @@ public class Peer {
 		clientSocket.close();
 
 	}
+
+	
 
 }

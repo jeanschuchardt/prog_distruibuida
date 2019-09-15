@@ -2,6 +2,8 @@ package T1.T1;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.rmi.server.ServerNotActiveException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +24,7 @@ public interface ServerHostInterface extends Remote {
 		public String solicitaInfo() throws RemoteException;
 
 		// retorna uma lista de recursos
-		public String solicitaRecursoInfo() throws RemoteException;
+		public String solicitaRecursoInfo() throws RemoteException ;
 
 		
 
@@ -38,7 +40,9 @@ public interface ServerHostInterface extends Remote {
 
 		public int heartbeat () throws RemoteException;
 
-		public String say() throws RemoteException;;
+		public String say() throws RemoteException;
+
+		public void registraRecurso(HashMap<String, String> mapFiles) throws RemoteException, ServerNotActiveException;;
 
 }
 
