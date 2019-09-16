@@ -14,8 +14,10 @@ class HelloClient {
 		Scanner sc = new Scanner(System.in);
 		try {
 
-			//ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.13:1099/Hello");
-			//ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
+			// ServerHostInterface hello = (ServerHostInterface)
+			// Naming.lookup("//192.168.0.13:1099/Hello");
+			// ServerHostInterface hello = (ServerHostInterface)
+			// Naming.lookup("//localhost/Hello");
 			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.4:1099/Hello");
 
 			// ServerHostInterface hello = (ServerHostInterface)
@@ -78,14 +80,15 @@ class HelloClient {
 					Scanner h = new Scanner(System.in);
 					String hash = h.nextLine();
 					String findByHash = hello.findByHash(hash);
+
+					findByHash = findByHash + ";" + hello.registraPeer();
 					System.out.println(findByHash);
 					cliente.clienteUDP(findByHash);
-					//cliente.conectToPeer();
-					
+					// cliente.conectToPeer();
 
 					break;
 				case 7:
-					//cliente.clienteUDP();
+					// cliente.clienteUDP();
 					break;
 
 				case 8:
