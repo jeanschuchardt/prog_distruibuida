@@ -102,8 +102,10 @@ public class Peer {
 
 	public void clienteUDP() throws IOException {
 		//String path = "../trabalho1/files";
-		String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
-		FileClient fc = new FileClient("localhost", 1988, path );
+		//String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
+		String path = "C:\\Users\\jeans\\Desktop\\New folder\\t3.sql";
+		
+		FileClient fc = new FileClient("192.168.0.4", 1988, path );
 	}
 
 	public void serverUDP() throws Exception {
