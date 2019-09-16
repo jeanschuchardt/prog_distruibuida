@@ -83,7 +83,7 @@ public class socketClass implements Runnable {
 
         sock = new Socket(ipRecurso, 2017);
 		
-		byte[] mybytearray = new byte[1048];
+		byte[] mybytearray = new byte[2048];
 		InputStream is = sock.getInputStream();
 		FileOutputStream fos = new FileOutputStream(n);
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
