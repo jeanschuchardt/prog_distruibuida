@@ -31,10 +31,10 @@ public class Peer {
 
 	public HashMap<String, String> contentList() throws NoSuchAlgorithmException, IOException {
 
-		// String path = "C:\\Users\\jean_burda\\Desktop\\Test";
+		 String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files";
 		// String path = "C:\\Users\\jeans\\Desktop\\New folder";
 
-		String path = "../trabalho1/files";
+		//String path = "../trabalho1/files";
 
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("informe uma pasta do sistema");
@@ -76,7 +76,7 @@ public class Peer {
 			mapFiles.put(myChecksum, fileName);
 
 		}
-
+		setlist();
 		return mapFiles;
 	}
 

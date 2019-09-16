@@ -40,12 +40,15 @@ public class socketClass implements Runnable {
         servsock = new ServerSocket(2017);
         
 		for (String string : listFiles) {
+			
 			if(string.contains(message)) {
-				
-				File myFile = new File(message);
+				System.out.println("aqui");
+				System.out.println(string);
+				File myFile = new File(string);
 				while (true) {
 					Socket sock = servsock.accept();
 					byte[] mybytearray = new byte[(int) myFile.length()];
+					System.out.println(mybytearray.length);
 					BufferedInputStream bis = new BufferedInputStream(new FileInputStream(myFile));
 					bis.read(mybytearray, 0, mybytearray.length);
 					OutputStream os = sock.getOutputStream();
@@ -80,7 +83,7 @@ public class socketClass implements Runnable {
 
         sock = new Socket(ipRecurso, 2017);
 		
-		byte[] mybytearray = new byte[1024];
+		byte[] mybytearray = new byte[1048];
 		InputStream is = sock.getInputStream();
 		FileOutputStream fos = new FileOutputStream(n);
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
