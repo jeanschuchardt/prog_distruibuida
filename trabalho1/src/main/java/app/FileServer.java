@@ -59,15 +59,19 @@ public class FileServer extends Thread {
 		
 	}
 	
-	
-
 	public void getRequest() throws IOException {
 		System.out.println("chegou aqui");
 		
 		
 			String[] split = null ;
 	
+			String ipOrigen = "";
+			String ipDestino = "";
+			String fileName = "";
+			String hashFile = "";
+			
 		    	while (true) {
+		    		System.out.println("chegou aqui 2");
 					try {
 						socket = ss.accept();
 						InputStream is = socket.getInputStream();
@@ -76,11 +80,10 @@ public class FileServer extends Thread {
 						String number = br.readLine();
 						split = number.split(";");
 						
-						System.out.println(split[0]);
-						System.out.println(split[1]);
-						System.out.println(split[2]);
-						System.out.println(split[3]);
-						 
+						ipOrigen = split[0];
+						ipDestino =split[3];
+						fileName = split[1];
+						hashFile = split[2];
 						
 						is.close();
 						isr.close();
@@ -95,16 +98,18 @@ public class FileServer extends Thread {
 					
 					//// envia o arquivo
 					
-					for (String string : Peer.listFiles()) {
-						System.out.println();
-						if(string.contains(split[1])) {
-							String path = string;
-							FileClient fc = new FileClient(split[3], 1988, path);
-						}else
-						{
-							System.out.println("error");
-						}
-					}
+//					for (String string : Peer.listFiles()) {
+//						System.out.println(string);
+//						if(string.contains(fileName)) {
+//							System.out.println("\ttrue");
+//							String path = string;
+//							System.out.println(ipDestino);
+//							FileClient fc = new FileClient(ipDestino, 1988, path);
+//						}else
+//						{
+//							System.out.println("\tfalse");
+//						}
+//					}
 //					String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
 //					FileClient fc = new FileClient(split[3], 1988, path);
 					 
