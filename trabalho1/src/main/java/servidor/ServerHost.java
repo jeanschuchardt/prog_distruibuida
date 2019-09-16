@@ -75,13 +75,27 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 	public String findByHash(String hash) throws RemoteException {
 		for (String key : clientes.keySet()) {
 			HashMap<String, String> recursos2 = clientes.get(key).getRecursos();
-			try {
-			String fileName = recursos2.get(hash);
-			return key +";" + fileName +";"+ hash;
-			}
-			catch (Exception e) {
 			
-			}
+				for (String s : recursos2.keySet()) {
+					String fileName = recursos2.get(s);
+					if(s.equals(hash)){
+						String a =  key +";" + s +";"+ fileName;
+						System.out.println(a);
+						return a;
+					}
+					
+					System.out.println(s);
+					System.out.println(fileName);
+				}
+				
+			
+			
+			//	return key +";" + fileName +";"+ hash;
+			
+			System.out.println(key);
+			
+		
+			
 		}
 		return "error";
 

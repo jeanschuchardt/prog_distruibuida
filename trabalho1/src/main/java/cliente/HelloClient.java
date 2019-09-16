@@ -83,9 +83,11 @@ class HelloClient {
 					
 					String ipOrigem = hello.registraPeer();
 					String[] split = findByHash.split(";") ;
-					cliente.getResource(ipOrigem,split[1]);
 					
 					System.out.println(findByHash);
+					cliente.getResource(split[0],split[1]);
+					
+				
 					
 					
 					

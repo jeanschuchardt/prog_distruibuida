@@ -36,25 +36,31 @@ public class socketClass implements Runnable {
         // read the message from the socket
         String message = dataInputStream.readUTF();
         System.out.println("The message sent from the socket was: " + message);
-		
-		
-		File myFile = new File(message);
-		while (true) {
-			Socket sock = servsock.accept();
-			byte[] mybytearray = new byte[(int) myFile.length()];
-			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(myFile));
-			bis.read(mybytearray, 0, mybytearray.length);
-			OutputStream os = sock.getOutputStream();
-			os.write(mybytearray, 0, mybytearray.length);
-			os.flush();
-			sock.close();
+		for (String string : listFiles) {
+			if(string.contains(message)) {
+				
+				File myFile = new File(message);
+				while (true) {
+					Socket sock = servsock.accept();
+					byte[] mybytearray = new byte[(int) myFile.length()];
+					BufferedInputStream bis = new BufferedInputStream(new FileInputStream(myFile));
+					bis.read(mybytearray, 0, mybytearray.length);
+					OutputStream os = sock.getOutputStream();
+					os.write(mybytearray, 0, mybytearray.length);
+					os.flush();
+					sock.close();
+				}
+			}
 		}
+		
+		
 
 	}
 
 	//preciso do ip do server
 	public void cliente(String ipRecurso, String n) throws Exception {
-		
+		System.out.println(ipRecurso);
+		System.out.println(n);
 		Socket sock = new Socket(ipRecurso, 2016);
 		  // get the output stream from the socket.
         OutputStream outputStream = sock.getOutputStream();
@@ -64,14 +70,14 @@ public class socketClass implements Runnable {
         System.out.println("Sending string to the ServerSocket");
 
         // write the message we want to send
-        dataOutputStream.writeUTF("../trabalho1/files/create.sql");
+        dataOutputStream.writeUTF(n);
         dataOutputStream.flush(); // send the message
         dataOutputStream.close(); // close the output stream when we're done.
 
 		
 		byte[] mybytearray = new byte[1024];
 		InputStream is = sock.getInputStream();
-		FileOutputStream fos = new FileOutputStream("s.pdf");
+		FileOutputStream fos = new FileOutputStream(n);
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
 		int bytesRead = is.read(mybytearray, 0, mybytearray.length);
 		bos.write(mybytearray, 0, bytesRead);
