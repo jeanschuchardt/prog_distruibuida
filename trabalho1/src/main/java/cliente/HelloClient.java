@@ -75,11 +75,11 @@ class HelloClient {
 					System.out.println(findByHash);
 					
 					cliente.conectToPeer(findByHash);
-					cliente.clienteUDP();
+					
 
 					break;
 				case 7:
-					
+					cliente.clienteUDP();
 					break;
 
 				case 8:
