@@ -136,6 +136,10 @@ public class Peer {
 		return listFiles;
 
 	}
+	public void getResource(String ip, String nome) throws Exception {
+		setlist();
+		socketClass.cliente(ip, nome);
+	}
 	
 	public void setlist() throws Exception {
 		socketClass.listFiles(listFiles);

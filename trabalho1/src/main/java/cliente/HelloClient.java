@@ -80,11 +80,17 @@ class HelloClient {
 					Scanner h = new Scanner(System.in);
 					String hash = h.nextLine();
 					String findByHash = hello.findByHash(hash);
-
-					findByHash = findByHash + ";" + hello.registraPeer();
+					
+					String ipOrigem = hello.registraPeer();
+					String[] split = findByHash.split(";") ;
+					cliente.getResource(ipOrigem,split[1]);
+					
 					System.out.println(findByHash);
-					cliente.clienteUDP(findByHash);
-					// cliente.conectToPeer();
+					
+					
+					
+					
+					
 
 					break;
 				case 7:
