@@ -104,6 +104,7 @@ public class Peer {
 		return mapFiles;
 	}
 
+	//deve mandar a mensagem para o peer que tem o conteudo
 	public void clienteUDP(String findByHash) throws IOException {
 		//String path = "../trabalho1/files";
 
@@ -115,6 +116,7 @@ public class Peer {
 		 try
 	        {
 	            String host = split[0];
+	            System.out.println("mensagem para "+ host);
 	            int port = 1988;
 	            InetAddress address = InetAddress.getByName(host);
 	            socket = new Socket(address, port);
@@ -130,13 +132,7 @@ public class Peer {
 	            bw.write(sendMessage);
 	            bw.flush();
 	            System.out.println("Message sent to the server : "+sendMessage);
-	 
-//	            //Get the return message from the server
-//	            InputStream is = socket.getInputStream();
-//	            InputStreamReader isr = new InputStreamReader(is);
-//	            BufferedReader br = new BufferedReader(isr);
-//	            String message = br.readLine();
-//	            System.out.println("Message received from the server : " +message);
+	          
 	        }
 	        catch (Exception exception)
 	        {
@@ -155,11 +151,6 @@ public class Peer {
 	            }
 	        }
 		
-
-		//String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
-	//	String path = "C:\\Users\\jeans\\Desktop\\New folder\\t3.sql";
-		
-	//	FileClient fc = new FileClient("192.168.0.4", 1988, path );
 
 	}
 

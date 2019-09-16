@@ -60,6 +60,8 @@ public class FileServer extends Thread {
 	
 
 	public void getRequest() throws IOException {
+		System.out.println("chegou aqui");
+		
 		Thread t1 = new Thread(new Runnable() {
 			String[] split ;
 		    public void run() {
@@ -75,6 +77,7 @@ public class FileServer extends Thread {
 						System.out.println(split[0]);
 						System.out.println(split[1]);
 						System.out.println(split[2]);
+						System.out.println(split[3]);
 						 
 						
 						is.close();
@@ -86,8 +89,10 @@ public class FileServer extends Thread {
 						e.printStackTrace();
 					}
 					
+					
+					//// envia o arquivo
 					String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
-					FileClient fc = new FileClient(split[0], 1988, path);
+					FileClient fc = new FileClient(split[3], 1988, path);
 					 
 				}
 		    }

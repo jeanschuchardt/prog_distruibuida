@@ -35,7 +35,7 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 		String ip = RemoteServer.getClientHost();
 		clientes.put(ip, new Clientes(ip));
 
-		return "ip registrado " + ip;
+		return ip;
 
 	}
 
