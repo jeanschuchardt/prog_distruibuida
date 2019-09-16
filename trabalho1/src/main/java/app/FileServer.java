@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import cliente.Peer;
+
 public class FileServer extends Thread {
 
 	private ServerSocket ss;
@@ -90,9 +92,18 @@ public class FileServer extends Thread {
 					}
 					
 					
+					
 					//// envia o arquivo
-					String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
-					FileClient fc = new FileClient(split[3], 1988, path);
+					
+					for (String string : Peer.listFiles()) {
+						System.out.println();
+						if(string.contains(split[3])) {
+							String path = string;
+							FileClient fc = new FileClient(split[3], 1988, path);
+						}
+					}
+//					String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
+//					FileClient fc = new FileClient(split[3], 1988, path);
 					 
 				}
 

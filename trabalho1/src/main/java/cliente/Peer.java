@@ -20,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -30,32 +31,18 @@ import app.FileServer;
 
 public class Peer {
 	private HashMap<String, String> mapFiles = new HashMap<String, String>();
+	private static ArrayList<String> listFiles = new ArrayList<String>();
 
 	Peer() throws Exception {
-		// clienteUDP();
-		// serverUDP();
-		serverUDP() ;
+		serverUDP();
 
 	}
 
-	public void getMyIP() throws IOException {
-		InetAddress inetAddress = InetAddress.getLocalHost();
-		System.out.println("IP Address:- " + inetAddress.getHostAddress());
-
-		System.out.println("Host Name:- " + inetAddress.getHostName());
-
-	}
-
-	public void requestFile(String ip, String fileName) {
-		// aqui deve ser a implementação do socket com o peer detentor do recurso
-
-	}
 
 	public HashMap<String, String> contentList() throws NoSuchAlgorithmException, IOException {
 
-
 		// String path = "C:\\Users\\jean_burda\\Desktop\\Test";
-		//String path = "C:\\Users\\jeans\\Desktop\\New folder";
+		// String path = "C:\\Users\\jeans\\Desktop\\New folder";
 
 		String path = "../trabalho1/files";
 
@@ -83,7 +70,7 @@ public class Peer {
 		for (int i = 0; i < files.length; i++) {
 			String fileName = files[i].getName();
 			String fileFullPath = path + "\\" + files[i].getName();
-
+			listFiles.add(fileFullPath);
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(Files.readAllBytes(Paths.get(fileFullPath)));
 			byte[] digest = md.digest();
@@ -104,69 +91,57 @@ public class Peer {
 		return mapFiles;
 	}
 
-	//deve mandar a mensagem para o peer que tem o conteudo
+	// deve mandar a mensagem para o peer que tem o conteudo
 	public void clienteUDP(String findByHash) throws IOException {
-		//String path = "../trabalho1/files";
+		// String path = "../trabalho1/files";
 
-		 Socket socket = null;
-	//	String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
-		//FileClient fc = new FileClient("localhost", 1988, path );
-		
-		 String[] split = findByHash.split(";");
-		 try
-	        {
-	            String host = split[0];
-	            System.out.println("mensagem para "+ host);
-	            int port = 1988;
-	            InetAddress address = InetAddress.getByName(host);
-	            socket = new Socket(address, port);
-	 
-	            //Send the message to the server
-	            OutputStream os = socket.getOutputStream();
-	            OutputStreamWriter osw = new OutputStreamWriter(os);
-	            BufferedWriter bw = new BufferedWriter(osw);
-	 
-	            String number = findByHash;
-	 
-	            String sendMessage = number + "\n";
-	            bw.write(sendMessage);
-	            bw.flush();
-	            System.out.println("Message sent to the server : "+sendMessage);
-	          
-	        }
-	        catch (Exception exception)
-	        {
-	            exception.printStackTrace();
-	        }
-	        finally
-	        {
-	            //Closing the socket
-	            try
-	            {
-	                socket.close();
-	            }
-	            catch(Exception e)
-	            {
-	                e.printStackTrace();
-	            }
-	        }
-		
+		Socket socket = null;
+		// String path =
+		// "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
+		// FileClient fc = new FileClient("localhost", 1988, path );
+
+		String[] split = findByHash.split(";");
+		try {
+			String host = split[0];
+			System.out.println("mensagem para " + host);
+			int port = 1988;
+			InetAddress address = InetAddress.getByName(host);
+			socket = new Socket(address, port);
+
+			// Send the message to the server
+			OutputStream os = socket.getOutputStream();
+			OutputStreamWriter osw = new OutputStreamWriter(os);
+			BufferedWriter bw = new BufferedWriter(osw);
+
+			String number = findByHash;
+
+			String sendMessage = number + "\n";
+			bw.write(sendMessage);
+			bw.flush();
+			System.out.println("Message sent to the server : " + sendMessage);
+
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		} finally {
+			// Closing the socket
+			try {
+				socket.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 
 	public void serverUDP() throws Exception {
 		FileServer fs = new FileServer(1988);
 		fs.start();
-		
-		
 
 	}
 
+	public static ArrayList<String> listFiles() {
+		return listFiles;
 
-	public void conectToPeer(String findByHash) {
-	
 	}
 
-
-	
 }
