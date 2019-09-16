@@ -85,7 +85,7 @@ class HelloClient {
 					String[] split = findByHash.split(";") ;
 					
 					System.out.println(findByHash);
-					cliente.getResource(split[0],split[1]);
+					cliente.getResource(split[0],split[2]);
 					
 				
 					

@@ -76,7 +76,7 @@ public class Peer {
 			mapFiles.put(myChecksum, fileName);
 
 		}
-
+		setlist();
 		return mapFiles;
 	}
 
@@ -132,7 +132,8 @@ public class Peer {
 
 	}
 
-	public ArrayList<String> listFiles() {
+	public ArrayList<String> listFiles() throws Exception {
+		setlist();
 		return listFiles;
 
 	}
