@@ -12,13 +12,17 @@ class HelloClient {
 	// Programa cliente para o exemplo "Hello, world!"
 	public static void main(String[] argv) {
 		Scanner sc = new Scanner(System.in);
+		String ip = "";
 		try {
 
 			// ServerHostInterface hello = (ServerHostInterface)
 			// Naming.lookup("//192.168.0.13:1099/Hello");
 			// ServerHostInterface hello = (ServerHostInterface)
 			// Naming.lookup("//localhost/Hello");
-			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.4:1099/Hello");
+			// ServerHostInterface hello = (ServerHostInterface)
+			// Naming.lookup("//192.168.0.4:1099/Hello");
+
+			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
 
 			// ServerHostInterface hello = (ServerHostInterface)
 			// Naming.lookup("//192.168.0.13:1099/Hello");
@@ -34,7 +38,7 @@ class HelloClient {
 				key = sc.nextInt();
 				switch (key) {
 				case 1:
-
+					ip = hello.registraPeer();
 					System.out.println(hello.registraPeer());
 					break;
 
@@ -79,24 +83,29 @@ class HelloClient {
 					System.out.println("info o hash do arquivo");
 					Scanner h = new Scanner(System.in);
 					String hash = h.nextLine();
-					String findByHash = hello.findByHash(hash);
+					System.out.println("valor a ser pesquisado: " + hash);
+//					try {
+//						 = hello.findByHash(hash);
+//						String ipOrigem = hello.registraPeer();
+//						String[] split = findByHash.split(";");
+//
+//						System.out.println(findByHash);
+//						cliente.getResource(split[0], split[2]);
+//					} catch (Exception e) {
+//						System.out.println("valor nao encontrado");
+//					}
 					
-					String ipOrigem = hello.registraPeer();
-					String[] split = findByHash.split(";") ;
-					
+					String findByHash= hello.findResource(hash);
 					System.out.println(findByHash);
-					cliente.getResource(split[0],split[2]);
 					
-				
+					String[] split = findByHash.split(";");
+
 					
-					
-					
-					
-					
+					cliente.getResource(split[0], split[2]);
 
 					break;
 				case 7:
-					// cliente.clienteUDP();
+					
 					break;
 
 				case 8:

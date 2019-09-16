@@ -39,14 +39,9 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 
 	}
 
-	public Map associaRecuso() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	// retorna todos os recursos disponiveis
 	public HashMap<String, HashMap<String, String>> listaRecursos() throws RemoteException {
-
 		return recursos;
 	}
 
@@ -72,32 +67,58 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 		return clientes;
 	}
 
-	public String findByHash(String hash) throws RemoteException {
-		for (String key : clientes.keySet()) {
-			HashMap<String, String> recursos2 = clientes.get(key).getRecursos();
-			
-				for (String s : recursos2.keySet()) {
-					String fileName = recursos2.get(s);
-					if(s.equals(hash)){
-						String a =  key +";" + s +";"+ fileName;
-						System.out.println(a);
-						return a;
-					}
-					
-					System.out.println(s);
-					System.out.println(fileName);
+	public String findResource(String hash) {
+		String result= "";
+		for (String  a : recursos.keySet()) {
+			HashMap<String, String> files = recursos.get(a);
+			for (String k : files.keySet()) {
+				String f = files.get(k);
+				System.out.println(">>>>>>>>>>>>>>>>>>");
+				System.out.println(a);
+				System.out.println(k);
+				System.out.println(f);
+				//ip;hash;name
+				if (k.equals(hash)) {
+					result = a +";"+k+";"+f;
+					return result;
 				}
-				
-			
-			
-			//	return key +";" + fileName +";"+ hash;
-			
-			System.out.println(key);
-			
-		
-			
+				System.out.println(">>>>>>>>>>>>>>>>>>");
+			}
 		}
-		return "error";
+		
+		
+		return "-1";
+		
+	}
+	public String findByHash(String hash) throws RemoteException {
+//		System.out.println("___________________________________________");
+//		String a = "";
+//		for (String key : clientes.keySet()) {
+//			HashMap<String, String> recursosCliente = clientes.get(key).getRecursos();
+//			System.out.println("ip " + key);
+//
+//			for (String s : recursosCliente.keySet()) {
+//				System.out.println("hash: " + s);
+//				String fileName = recursosCliente.get(s);
+//				System.out.println("file name: "+ fileName);
+//				
+//					a = key + ";" + s + ";" + fileName;
+//					System.out.println(a);
+//					System.out.println("___________________________________________");
+//					
+//				
+//
+//				//System.out.println(s);
+//				//System.out.println(fileName);
+//			}
+//
+//			// return key +";" + fileName +";"+ hash;
+//
+//			System.out.println(key);
+//
+//		}
+//		System.out.println("___________________________________________");
+		return "";
 
 	}
 }
