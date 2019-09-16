@@ -97,9 +97,12 @@ public class FileServer extends Thread {
 					
 					for (String string : Peer.listFiles()) {
 						System.out.println();
-						if(string.contains(split[3])) {
+						if(string.contains(split[1])) {
 							String path = string;
 							FileClient fc = new FileClient(split[3], 1988, path);
+						}else
+						{
+							System.out.println("error");
 						}
 					}
 //					String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
