@@ -13,9 +13,15 @@ class HelloClient {
 	public static void main(String[] argv) {
 		Scanner sc = new Scanner(System.in);
 		try {
+
+			//ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.13:1099/Hello");
+			//ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
+			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//192.168.0.4:1099/Hello");
+
 			// ServerHostInterface hello = (ServerHostInterface)
 			// Naming.lookup("//192.168.0.13:1099/Hello");
-			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
+//			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
+
 			Peer cliente = new Peer();
 			System.out.println("iniciado");
 			int key = 1;
@@ -73,13 +79,13 @@ class HelloClient {
 					String hash = h.nextLine();
 					String findByHash = hello.findByHash(hash);
 					System.out.println(findByHash);
-					
-					cliente.conectToPeer(findByHash);
+					cliente.clienteUDP(findByHash);
+					//cliente.conectToPeer();
 					
 
 					break;
 				case 7:
-					cliente.clienteUDP();
+					//cliente.clienteUDP();
 					break;
 
 				case 8:

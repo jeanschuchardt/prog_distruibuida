@@ -52,9 +52,13 @@ public class Peer {
 	}
 
 	public HashMap<String, String> contentList() throws NoSuchAlgorithmException, IOException {
-		
 
-		String path = "../trabalho1/files";
+
+		// String path = "C:\\Users\\jean_burda\\Desktop\\Test";
+		String path = "C:\\Users\\jeans\\Desktop\\New folder";
+
+//		String path = "../trabalho1/files";
+
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("informe uma pasta do sistema");
 //		path = sc.nextLine();
@@ -63,7 +67,7 @@ public class Peer {
 			f = new File(path);
 			File[] files = f.listFiles();
 
-			calculateHash( path, files);
+			calculateHash(path, files);
 
 		} catch (Exception e) {
 			System.out.println("Error contentList");
@@ -95,15 +99,14 @@ public class Peer {
 
 		return mapFiles;
 	}
-	
-	
-	
+
 	public HashMap<String, String> getMapFiles() {
 		return mapFiles;
 	}
 
-	public void clienteUDP() throws IOException {
+	public void clienteUDP(String findByHash) throws IOException {
 		//String path = "../trabalho1/files";
+
 		 Socket socket = null;
 	//	String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
 		//FileClient fc = new FileClient("localhost", 1988, path );
@@ -120,7 +123,7 @@ public class Peer {
 	            OutputStreamWriter osw = new OutputStreamWriter(os);
 	            BufferedWriter bw = new BufferedWriter(osw);
 	 
-	            String number = "2";
+	            String number = findByHash;
 	 
 	            String sendMessage = number + "\n";
 	            bw.write(sendMessage);
@@ -151,6 +154,12 @@ public class Peer {
 	            }
 	        }
 		
+
+		//String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
+	//	String path = "C:\\Users\\jeans\\Desktop\\New folder\\t3.sql";
+		
+	//	FileClient fc = new FileClient("192.168.0.4", 1988, path );
+
 	}
 
 	public void serverUDP() throws Exception {
@@ -161,11 +170,11 @@ public class Peer {
 
 	}
 
+
 	public void conectToPeer(String findByHash) {
 	
 	}
 
 
 	
-
 }
