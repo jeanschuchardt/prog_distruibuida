@@ -36,6 +36,9 @@ public class socketClass implements Runnable {
         // read the message from the socket
         String message = dataInputStream.readUTF();
         System.out.println("The message sent from the socket was: " + message);
+        
+        servsock = new ServerSocket(2017);
+        
 		for (String string : listFiles) {
 			if(string.contains(message)) {
 				
@@ -62,6 +65,7 @@ public class socketClass implements Runnable {
 		System.out.println(ipRecurso);
 		System.out.println(n);
 		Socket sock = new Socket(ipRecurso, 2016);
+		
 		  // get the output stream from the socket.
         OutputStream outputStream = sock.getOutputStream();
         // create a data output stream from the output stream so we can send data through it
@@ -74,6 +78,7 @@ public class socketClass implements Runnable {
         dataOutputStream.flush(); // send the message
         dataOutputStream.close(); // close the output stream when we're done.
 
+        sock = new Socket(ipRecurso, 2017);
 		
 		byte[] mybytearray = new byte[1024];
 		InputStream is = sock.getInputStream();
@@ -83,6 +88,7 @@ public class socketClass implements Runnable {
 		bos.write(mybytearray, 0, bytesRead);
 		bos.close();
 		sock.close();
+		
 	}
 
 	public void run() {
