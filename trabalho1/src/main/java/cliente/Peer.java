@@ -12,16 +12,15 @@ import java.util.HashMap;
 import javax.xml.bind.DatatypeConverter;
 
 public class Peer {
-	
 
-	private HashMap<String, String> mapFiles =  new HashMap<String, String>();
+	private HashMap<String, String> mapFiles = new HashMap<String, String>();
 	private ArrayList<String> listFiles = new ArrayList<String>();;
 	private socketClass socketClass;
-	
 
 	Peer() throws Exception {
+
 		socketClass = new socketClass();
-		Thread a  = new Thread(socketClass);
+		Thread a = new Thread(socketClass);
 		a.start();
 	}
 
@@ -43,7 +42,7 @@ public class Peer {
 			f = new File(path);
 			File[] files = f.listFiles();
 
-		calculateHash = calculateHash(path, files);
+			calculateHash = calculateHash(path, files);
 
 		} catch (Exception e) {
 			System.out.println("Error contentList");
@@ -54,11 +53,10 @@ public class Peer {
 		
 	}
 
-	private HashMap<String, String> calculateHash(String path, File[] files)
-			throws Exception {
-		
+	private HashMap<String, String> calculateHash(String path, File[] files) throws Exception {
+
 		for (int i = 0; i < files.length; i++) {
-			
+
 			String fileName = files[i].getName();
 			String fileFullPath = path + "\\" + files[i].getName();
 			listFiles.add(fileFullPath);
@@ -82,19 +80,19 @@ public class Peer {
 		return mapFiles;
 	}
 
-	public ArrayList<String> listFiles() {
+	public ArrayList<String> listFiles() throws Exception {
+		setlist();
 		return listFiles;
 
 	}
+
 	public void getResource(String ip, String nome) throws Exception {
 		setlist();
 		socketClass.cliente(ip, nome);
 	}
-	
+
 	public void setlist() throws Exception {
 		socketClass.listFiles(listFiles);
 	}
-
-	
 
 }

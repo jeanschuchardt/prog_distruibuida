@@ -29,6 +29,7 @@ public interface ServerHostInterface extends Remote {
 
 	public void registraRecurso(HashMap<String, String> mapFiles) throws RemoteException, ServerNotActiveException;
 
+	public String findResource(String a)throws RemoteException;
 	
 	/// uma thread de solicitações
 	// uma tread para percorrer a lista para ver quem ta vivo
