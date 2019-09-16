@@ -62,9 +62,9 @@ public class FileServer extends Thread {
 	public void getRequest() throws IOException {
 		System.out.println("chegou aqui");
 		
-		Thread t1 = new Thread(new Runnable() {
-			String[] split ;
-		    public void run() {
+		
+			String[] split = null ;
+	
 		    	while (true) {
 					try {
 						socket = ss.accept();
@@ -85,7 +85,7 @@ public class FileServer extends Thread {
 						br.close();
 						socket.close();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+						System.out.println("erro mensagem");
 						e.printStackTrace();
 					}
 					
@@ -95,9 +95,10 @@ public class FileServer extends Thread {
 					FileClient fc = new FileClient(split[3], 1988, path);
 					 
 				}
-		    }
-		});  
-		t1.start();
+
+
+		
+	
 		
 	}
 
