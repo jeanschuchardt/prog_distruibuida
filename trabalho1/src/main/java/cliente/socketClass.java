@@ -19,7 +19,6 @@ public class socketClass implements Runnable {
 	public ArrayList<String> listFiles;
 
 	
-	
 	public void server() throws Exception {
 		ServerSocket servsock = new ServerSocket(2016);
 				
@@ -59,8 +58,6 @@ public class socketClass implements Runnable {
 			}
 		}
 		
-		
-
 	}
 
 	//preciso do ip do server

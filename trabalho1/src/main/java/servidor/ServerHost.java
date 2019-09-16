@@ -27,10 +27,7 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 
 	// Implementa o metodo invocavel remotamente, que retorna a mensagem armazenada
 	// no objeto
-	public String say() throws RemoteException {
-		return "Teste blablabla";
-	}
-
+	
 	public String registraPeer() throws Exception {
 		String ip = RemoteServer.getClientHost();
 		clientes.put(ip, new Clientes(ip));
@@ -39,21 +36,14 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 
 	}
 
-	public Map associaRecuso() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	// retorna todos os recursos disponiveis
 	public HashMap<String, HashMap<String, String>> listaRecursos() throws RemoteException {
 
 		return recursos;
 	}
 
-	public String solicitaRecurso() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	public int heartbeat() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -100,6 +90,8 @@ public class ServerHost extends UnicastRemoteObject implements ServerHostInterfa
 		return "error";
 
 	}
+
+
 }
 
 ;

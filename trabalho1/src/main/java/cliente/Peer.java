@@ -20,22 +20,20 @@ public class Peer {
 	
 
 	Peer() throws Exception {
-//		serverUDP();
 		socketClass = new socketClass();
 		Thread a  = new Thread(socketClass);
 		a.start();
-		
-
-
 	}
 
 	public HashMap<String, String> contentList() throws NoSuchAlgorithmException, IOException {
 
-		 String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files";
+		// String path = "C:\\puc\\prog_distruibuida\\trabalho1\\files";
 		// String path = "C:\\Users\\jeans\\Desktop\\New folder";
 
-		//String path = "../trabalho1/files";
+		String path = "../trabalho1/files";
 
+		//TODO: REMOVER PATH ESTATICO
+		
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("informe uma pasta do sistema");
 //		path = sc.nextLine();
@@ -53,7 +51,7 @@ public class Peer {
 		}
 		return calculateHash;
 
-		///
+		
 	}
 
 	private HashMap<String, String> calculateHash(String path, File[] files)
@@ -82,54 +80,6 @@ public class Peer {
 
 	public HashMap<String, String> getMapFiles() {
 		return mapFiles;
-	}
-
-	// deve mandar a mensagem para o peer que tem o conteudo
-	public void clienteUDP(String findByHash) throws IOException {
-//		// String path = "../trabalho1/files";
-//
-//		Socket socket = null;
-//		// String path =
-//		// "C:\\puc\\prog_distruibuida\\trabalho1\\files\\create_update.sql";
-//		// FileClient fc = new FileClient("localhost", 1988, path );
-//
-//		String[] split = findByHash.split(";");
-//		try {
-//			String host = split[0];
-//			System.out.println("mensagem para " + host);
-//			int port = 1988;
-//			InetAddress address = InetAddress.getByName(host);
-//			socket = new Socket(address, port);
-//
-//			// Send the message to the server
-//			OutputStream os = socket.getOutputStream();
-//			OutputStreamWriter osw = new OutputStreamWriter(os);
-//			BufferedWriter bw = new BufferedWriter(osw);
-//
-//			String number = findByHash;
-//
-//			String sendMessage = number + "\n";
-//			bw.write(sendMessage);
-//			bw.flush();
-//			System.out.println("Message sent to the server : " + sendMessage);
-//
-//		} catch (Exception exception) {
-//			exception.printStackTrace();
-//		} finally {
-//			// Closing the socket
-//			try {
-//				socket.close();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-
-	}
-
-	public void serverUDP() throws Exception {
-//		FileServer fs = new FileServer(1988);
-//		fs.start();
-
 	}
 
 	public ArrayList<String> listFiles() {

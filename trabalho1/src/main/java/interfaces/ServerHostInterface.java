@@ -19,9 +19,7 @@ public interface ServerHostInterface extends Remote {
 
 	// retorna todos os recursos disponiveis
 	public HashMap<String, HashMap<String, String>> listaRecursos() throws RemoteException;
-
-	// recebe endereço do outro servidor onde esta o recurso
-	public String solicitaRecurso() throws RemoteException;
+	
 	public String findByHash(String hash) throws RemoteException;
 	
 	// recebe endereço do outro servidor onde esta o recurso
@@ -29,11 +27,8 @@ public interface ServerHostInterface extends Remote {
 
 	public int heartbeat() throws RemoteException;
 
-	public String say() throws RemoteException;
-
 	public void registraRecurso(HashMap<String, String> mapFiles) throws RemoteException, ServerNotActiveException;
 
-	
 	
 	/// uma thread de solicitações
 	// uma tread para percorrer a lista para ver quem ta vivo

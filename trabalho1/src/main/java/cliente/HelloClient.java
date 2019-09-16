@@ -86,14 +86,8 @@ class HelloClient {
 					
 					System.out.println(findByHash);
 					cliente.getResource(split[0],split[2]);
+								
 					
-				
-					
-					
-					
-					
-					
-
 					break;
 				case 7:
 					// cliente.clienteUDP();
@@ -104,7 +98,7 @@ class HelloClient {
 					break;
 
 				case 9:
-					System.out.println(hello.say());
+					
 					break;
 
 				case 0:
