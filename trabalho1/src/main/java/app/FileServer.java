@@ -81,7 +81,6 @@ public class FileServer extends Thread {
 						isr.close();
 						br.close();
 						socket.close();
-						
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
