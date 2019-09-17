@@ -20,7 +20,6 @@ public interface ServerHostInterface extends Remote {
 	// retorna todos os recursos disponiveis
 	public HashMap<String, HashMap<String, String>> listaRecursos() throws RemoteException;
 	
-	public String findByHash(String hash) throws RemoteException;
 	
 	// recebe endereço do outro servidor onde esta o recurso
 	public HashMap<String, Clientes> solicitaClientes() throws RemoteException;

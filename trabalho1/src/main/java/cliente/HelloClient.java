@@ -13,6 +13,7 @@ class HelloClient {
 	public static void main(String[] argv) {
 		Scanner sc = new Scanner(System.in);
 		String ip = "";
+		String serverIP = argv[0];
 		try {
 
 			// ServerHostInterface hello = (ServerHostInterface)
@@ -21,8 +22,8 @@ class HelloClient {
 			// Naming.lookup("//localhost/Hello");
 			// ServerHostInterface hello = (ServerHostInterface)
 			// Naming.lookup("//192.168.0.4:1099/Hello");
-
-			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//localhost/Hello");
+//10.132.241.252
+			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//"+serverIP+":1099/Hello");
 
 			// ServerHostInterface hello = (ServerHostInterface)
 			// Naming.lookup("//192.168.0.13:1099/Hello");
@@ -67,33 +68,11 @@ class HelloClient {
 					break;
 
 				case 5:
-					HashMap<String, Clientes> solicitaClientes = hello.solicitaClientes();
-					HashMap<String, String> value2 = new HashMap<String, String>();
-					for (String name : solicitaClientes.keySet()) {
-						String key1 = name.toString();
-						String value = solicitaClientes.get(name).getIp();
-						value2 = solicitaClientes.get(name).getRecursos();
-						System.out.println(key1 + ">" + value);
-					}
-					for (String name : value2.keySet()) {
-
-					}
-					break;
-				case 6:
 					System.out.println("info o hash do arquivo");
 					Scanner h = new Scanner(System.in);
 					String hash = h.nextLine();
 					System.out.println("valor a ser pesquisado: " + hash);
-//					try {
-//						 = hello.findByHash(hash);
-//						String ipOrigem = hello.registraPeer();
-//						String[] split = findByHash.split(";");
-//
-//						System.out.println(findByHash);
-//						cliente.getResource(split[0], split[2]);
-//					} catch (Exception e) {
-//						System.out.println("valor nao encontrado");
-//					}
+
 					
 					String findByHash= hello.findResource(hash);
 					System.out.println(findByHash);
@@ -102,7 +81,9 @@ class HelloClient {
 
 					
 					cliente.getResource(split[0], split[2]);
-
+					break;
+				case 6:
+					
 					break;
 				case 7:
 					
