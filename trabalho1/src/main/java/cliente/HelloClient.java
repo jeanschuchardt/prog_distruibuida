@@ -13,7 +13,7 @@ class HelloClient {
 	public static void main(String[] argv) {
 		Scanner sc = new Scanner(System.in);
 		String ip = "";
-		String serverIP = argv[0];
+//		String serverIP = argv[0];
 		try {
 
 			// ServerHostInterface hello = (ServerHostInterface)
@@ -23,7 +23,7 @@ class HelloClient {
 			// ServerHostInterface hello = (ServerHostInterface)
 			// Naming.lookup("//192.168.0.4:1099/Hello");
 //10.132.241.252
-			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//"+serverIP+":1099/Hello");
+			ServerHostInterface hello = (ServerHostInterface) Naming.lookup("//10.32.169.45:1099/Hello");
 
 			// ServerHostInterface hello = (ServerHostInterface)
 			// Naming.lookup("//192.168.0.13:1099/Hello");
